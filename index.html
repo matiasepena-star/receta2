@@ -1,1 +1,1146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema de Recetas</title>
+  <style>
+/* ── Reset & base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+:root {
+  --green-dark:  #1B4F35;
+  --green-mid:   #2D7A50;
+  --green-light: #E8F5EE;
+  --orange:      #C8500A;
+  --orange-light:#FEF0E6;
+  --amber:       #9A6F00;
+  --amber-light: #FFF8DC;
+  --gray-bg:     #F4F4F4;
+  --gray-line:   #E0E0E0;
+  --gray-text:   #666666;
+  --text:        #1A1A1A;
+  --white:       #FFFFFF;
+  --radius:      8px;
+  --radius-lg:   12px;
+  --shadow:      0 1px 4px rgba(0,0,0,.08);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  background: #F0F2F0;
+  min-height: 100vh;
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+.app-header {
+  background: var(--green-dark);
+  color: #fff;
+  padding: 0 20px;
+}
+.header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 52px;
+}
+.header-logo { font-size: 22px; }
+.app-header h1 { font-size: 17px; font-weight: 600; letter-spacing: .01em; }
+
+/* ── Tabs ─────────────────────────────────────────────────── */
+.tabs {
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-line);
+  display: flex;
+  padding: 0 20px;
+  max-width: 100%;
+  overflow-x: auto;
+}
+.tab {
+  padding: 12px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-text);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color .15s, border-color .15s;
+}
+.tab:hover { color: var(--text); }
+.tab.active { color: var(--green-dark); border-bottom-color: var(--green-dark); }
+
+/* ── Content ──────────────────────────────────────────────── */
+.content {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px 16px 48px;
+}
+
+/* ── Panels ───────────────────────────────────────────────── */
+.panel { display: none; flex-direction: column; gap: 14px; }
+.panel.active { display: flex; }
+
+/* ── Card ─────────────────────────────────────────────────── */
+.card {
+  background: var(--white);
+  border: 1px solid var(--gray-line);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.sec-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--gray-text);
+  margin-bottom: 12px;
+}
+
+/* ── Form grid ────────────────────────────────────────────── */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+.field { display: flex; flex-direction: column; gap: 4px; }
+.field.span-1 { grid-column: span 1; }
+.field.span-2 { grid-column: span 2; }
+.field.span-3 { grid-column: span 3; }
+.field.span-4 { grid-column: span 4; }
+.field.span-5 { grid-column: span 5; }
+.field.span-6 { grid-column: span 6; }
+
+label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray-text);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--gray-line);
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--white);
+  transition: border-color .15s;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--green-mid);
+  box-shadow: 0 0 0 3px rgba(45,122,80,.12);
+}
+textarea { resize: vertical; }
+
+/* ── Ingredient table ─────────────────────────────────────── */
+.table-wrap { overflow-x: auto; margin-bottom: 10px; }
+
+.ing-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.ing-table th {
+  background: var(--green-dark);
+  color: #fff;
+  padding: 8px 10px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.ing-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--gray-line);
+  vertical-align: middle;
+}
+.ing-table tr:nth-child(even) td { background: var(--green-light); }
+.ing-table td input,
+.ing-table td select {
+  padding: 5px 7px;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+.col-num    { width: 32px; text-align: center; }
+.col-insumo { min-width: 180px; }
+.col-unidad { width: 70px; text-align: center; }
+.col-cant   { width: 90px; }
+.col-cu     { width: 110px; }
+.col-sub    { width: 110px; }
+.col-del    { width: 30px; }
+
+.del-btn {
+  background: none;
+  border: none;
+  color: #c0392b;
+  font-size: 18px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 4px;
+  opacity: .7;
+  transition: opacity .15s;
+}
+.del-btn:hover { opacity: 1; }
+
+.td-auto {
+  color: var(--gray-text);
+  font-style: italic;
+  font-size: 12px;
+}
+.td-sub {
+  font-weight: 600;
+  color: var(--green-dark);
+  text-align: right;
+}
+
+/* ── Total bar ────────────────────────────────────────────── */
+.total-bar {
+  background: var(--green-dark);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.total-label { font-size: 12px; opacity: .8; font-weight: 500; }
+.total-val   { font-size: 22px; font-weight: 700; }
+
+/* ── Price block ──────────────────────────────────────────── */
+.pv-block {
+  background: var(--orange-light);
+  border: 1px solid var(--orange);
+  border-radius: var(--radius-lg);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.pv-block label {
+  color: var(--orange);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.pv-block input {
+  max-width: 180px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--orange);
+  border-color: var(--orange);
+}
+.pv-block input:focus { box-shadow: 0 0 0 3px rgba(200,80,10,.15); border-color: var(--orange); }
+
+/* ── KPI row ──────────────────────────────────────────────── */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.kpi {
+  background: var(--white);
+  border: 1px solid var(--gray-line);
+  border-radius: var(--radius-lg);
+  padding: 12px 16px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.kpi-label { font-size: 11px; color: var(--gray-text); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px; }
+.kpi-val   { font-size: 22px; font-weight: 700; color: var(--green-dark); }
+.kpi-val.neg { color: #c0392b; }
+
+/* ── Buttons ──────────────────────────────────────────────── */
+.btn {
+  padding: 9px 20px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--gray-line);
+  background: var(--white);
+  color: var(--text);
+  transition: background .15s, border-color .15s, transform .1s;
+}
+.btn:hover { background: var(--gray-bg); }
+.btn:active { transform: scale(.98); }
+
+.btn-green  { background: var(--green-dark); color: #fff; border-color: var(--green-dark); }
+.btn-green:hover { background: var(--green-mid); border-color: var(--green-mid); }
+
+.btn-orange { background: var(--orange); color: #fff; border-color: var(--orange); }
+.btn-outline { background: var(--white); color: var(--text); }
+
+.btn-sm { padding: 6px 12px; font-size: 12px; }
+.btn-danger { background: #fdecea; color: #c0392b; border-color: #f5b7b1; }
+.btn-danger:hover { background: #f5b7b1; }
+
+.action-row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* ── Search box ───────────────────────────────────────────── */
+.search-box { display: flex; gap: 10px; align-items: center; }
+.search-box input { flex: 1; }
+
+/* ── Recipe cards ─────────────────────────────────────────── */
+.receta-card {
+  background: var(--white);
+  border: 1px solid var(--gray-line);
+  border-radius: var(--radius-lg);
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: border-color .15s, box-shadow .15s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow);
+}
+.receta-card:hover { border-color: var(--green-mid); box-shadow: 0 2px 8px rgba(0,0,0,.1); }
+.receta-card .nombre { font-weight: 600; font-size: 14px; }
+.receta-card .meta   { font-size: 12px; color: var(--gray-text); margin-top: 3px; }
+.receta-card .precio { font-weight: 700; color: var(--green-dark); font-size: 15px; white-space: nowrap; }
+
+/* ── Badges ───────────────────────────────────────────────── */
+.badge {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.badge-green  { background: var(--green-light); color: var(--green-dark); }
+.badge-orange { background: var(--orange-light); color: var(--orange); }
+.badge-gray   { background: var(--gray-bg); color: var(--gray-text); }
+
+/* ── Detail view ──────────────────────────────────────────── */
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.detail-header h2 { font-size: 18px; font-weight: 700; }
+.detail-meta { font-size: 12px; color: var(--gray-text); margin-top: 3px; }
+
+/* ── Insumos table ────────────────────────────────────────── */
+.insumos-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.insumos-table th {
+  background: var(--green-dark);
+  color: #fff;
+  padding: 8px 12px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+}
+.insumos-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--gray-line);
+}
+.insumos-table tr:nth-child(even) td { background: var(--green-light); }
+
+/* ── Empty state ──────────────────────────────────────────── */
+.empty {
+  text-align: center;
+  color: var(--gray-text);
+  font-size: 14px;
+  padding: 40px 20px;
+  font-style: italic;
+}
+
+/* ── Messages ─────────────────────────────────────────────── */
+.msg {
+  padding: 10px 16px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+.msg-ok  { background: var(--green-light); color: var(--green-dark); }
+.msg-err { background: #fdecea; color: #c0392b; }
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .form-grid { grid-template-columns: repeat(2, 1fr); }
+  .field.span-3, .field.span-4, .field.span-5, .field.span-6 { grid-column: span 2; }
+  .field.span-2 { grid-column: span 2; }
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
+  .kpi-row .kpi:last-child { grid-column: span 2; }
+  .pv-block { flex-direction: column; align-items: flex-start; }
+}
+  </style>
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <span class="header-logo">🍽️</span>
+      <h1>Sistema de Recetas</h1>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="nueva">Nueva receta</button>
+    <button class="tab" data-tab="recetas">Mis recetas</button>
+    <button class="tab" data-tab="insumos">Insumos</button>
+  </nav>
+
+  <main class="content">
+
+    <section id="panel-nueva" class="panel active">
+      <div id="msg-nueva"></div>
+      <div class="card">
+        <p class="sec-title">Datos generales</p>
+        <div class="form-grid">
+          <div class="field span-3">
+            <label for="r-nombre">Nombre de la receta *</label>
+            <input id="r-nombre" type="text" placeholder="Ej: Milanesa a la Napolitana" />
+          </div>
+          <div class="field span-2">
+            <label for="r-cat">Categoría</label>
+            <select id="r-cat">
+              <option value="">— elegir —</option>
+              <option>Entradas</option><option>Platos Principales</option>
+              <option>Pastas</option><option>Pizzas</option>
+              <option>Ensaladas</option><option>Postres</option>
+              <option>Bebidas</option><option>Panificados</option><option>Otros</option>
+            </select>
+          </div>
+          <div class="field span-1">
+            <label for="r-porciones">Porciones</label>
+            <input id="r-porciones" type="number" min="1" value="4" />
+          </div>
+          <div class="field span-1">
+            <label for="r-tprep">Prep (min)</label>
+            <input id="r-tprep" type="number" min="0" placeholder="0" />
+          </div>
+          <div class="field span-1">
+            <label for="r-tcoc">Cocción (min)</label>
+            <input id="r-tcoc" type="number" min="0" placeholder="0" />
+          </div>
+          <div class="field span-5">
+            <label for="r-desc">Descripción / Procedimiento</label>
+            <textarea id="r-desc" rows="3" placeholder="Pasos, técnica, notas..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <p class="sec-title">Ingredientes</p>
+        <div class="table-wrap">
+          <table class="ing-table">
+            <thead>
+              <tr>
+                <th class="col-num">#</th>
+                <th class="col-insumo">Insumo</th>
+                <th class="col-unidad">Unidad</th>
+                <th class="col-cant">Cantidad</th>
+                <th class="col-cu">Costo unit.</th>
+                <th class="col-sub">Subtotal</th>
+                <th class="col-del"></th>
+              </tr>
+            </thead>
+            <tbody id="ing-body"></tbody>
+          </table>
+        </div>
+        <button class="btn btn-sm btn-outline" id="btn-add-ing">+ Agregar ingrediente</button>
+      </div>
+
+      <div class="total-bar">
+        <span class="total-label">Costo total de ingredientes</span>
+        <span class="total-val" id="total-costo">$0,00</span>
+      </div>
+
+      <div class="pv-block">
+        <label for="r-pventa">Precio de venta $</label>
+        <input id="r-pventa" type="number" min="0" placeholder="0,00" />
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi"><div class="kpi-label">Costo por porción</div><div class="kpi-val" id="kpi-cpp">—</div></div>
+        <div class="kpi"><div class="kpi-label">Ganancia bruta</div><div class="kpi-val" id="kpi-gan">—</div></div>
+        <div class="kpi"><div class="kpi-label">Margen</div><div class="kpi-val" id="kpi-margen">—</div></div>
+      </div>
+
+      <div class="action-row">
+        <button class="btn btn-green" id="btn-guardar">Guardar receta</button>
+        <button class="btn btn-outline" id="btn-limpiar">Limpiar formulario</button>
+      </div>
+    </section>
+
+    <section id="panel-recetas" class="panel">
+      <div class="search-box">
+        <input id="busq-receta" type="text" placeholder="Buscar por nombre o categoría..." />
+      </div>
+      <div id="lista-recetas"></div>
+      <div id="detalle-receta" style="display:none"></div>
+    </section>
+
+    <section id="panel-insumos" class="panel">
+      <div class="search-box">
+        <input id="busq-insumo" type="text" placeholder="Buscar insumo..." />
+        <button class="btn btn-green" id="btn-nuevo-insumo">+ Insumo</button>
+      </div>
+      <div id="form-insumo" class="card" style="display:none">
+        <p class="sec-title" id="form-ins-title">Nuevo insumo</p>
+        <div class="form-grid">
+          <div class="field span-3">
+            <label for="ins-nombre">Nombre *</label>
+            <input id="ins-nombre" type="text" placeholder="Ej: Harina 000" />
+          </div>
+          <div class="field span-2">
+            <label for="ins-cat">Categoría</label>
+            <select id="ins-cat">
+              <option>Secos</option><option>Lácteos</option><option>Carnes</option>
+              <option>Verduras</option><option>Líquidos</option><option>Especias</option>
+              <option>Envasados</option><option>Varios</option>
+            </select>
+          </div>
+          <div class="field span-1">
+            <label for="ins-unidad">Unidad</label>
+            <select id="ins-unidad">
+              <option>kg</option><option>gr</option><option>lt</option>
+              <option>ml</option><option>unidad</option><option>docena</option>
+              <option>atado</option><option>paquete</option>
+            </select>
+          </div>
+          <div class="field span-2">
+            <label for="ins-costo">Costo ($) *</label>
+            <input id="ins-costo" type="number" min="0" step="0.01" placeholder="0,00" />
+          </div>
+          <div class="field span-3">
+            <label for="ins-proveedor">Proveedor</label>
+            <input id="ins-proveedor" type="text" placeholder="Nombre del proveedor" />
+          </div>
+        </div>
+        <div class="action-row" style="margin-top:12px">
+          <button class="btn btn-green" id="btn-guardar-insumo">Guardar</button>
+          <button class="btn btn-outline" id="btn-cancelar-insumo">Cancelar</button>
+        </div>
+      </div>
+      <div id="lista-insumos"></div>
+    </section>
+
+  </main>
+
+  <script>
+// Insumos precargados por defecto
+// Podés modificar esta lista o agregar nuevos desde la interfaz
+
+const INSUMOS_DEFAULT = [
+  { id: 'INS001', nombre: 'Harina 000',             cat: 'Secos',     unidad: 'kg',     costo: 85,   proveedor: 'Molinos Loma' },
+  { id: 'INS002', nombre: 'Harina 0000',            cat: 'Secos',     unidad: 'kg',     costo: 95,   proveedor: 'Molinos Loma' },
+  { id: 'INS003', nombre: 'Azúcar',                 cat: 'Secos',     unidad: 'kg',     costo: 120,  proveedor: 'Supermercado' },
+  { id: 'INS004', nombre: 'Sal fina',               cat: 'Secos',     unidad: 'kg',     costo: 45,   proveedor: 'Supermercado' },
+  { id: 'INS005', nombre: 'Aceite de girasol',      cat: 'Líquidos',  unidad: 'lt',     costo: 350,  proveedor: 'Supermercado' },
+  { id: 'INS006', nombre: 'Aceite de oliva',        cat: 'Líquidos',  unidad: 'lt',     costo: 1800, proveedor: 'Almacén' },
+  { id: 'INS007', nombre: 'Leche entera',           cat: 'Lácteos',   unidad: 'lt',     costo: 220,  proveedor: 'Lácteos Sur' },
+  { id: 'INS008', nombre: 'Crema de leche',         cat: 'Lácteos',   unidad: 'lt',     costo: 680,  proveedor: 'Lácteos Sur' },
+  { id: 'INS009', nombre: 'Manteca',                cat: 'Lácteos',   unidad: 'kg',     costo: 1200, proveedor: 'Lácteos Sur' },
+  { id: 'INS010', nombre: 'Queso mozzarella',       cat: 'Lácteos',   unidad: 'kg',     costo: 1800, proveedor: 'Lácteos Sur' },
+  { id: 'INS011', nombre: 'Queso parmesano',        cat: 'Lácteos',   unidad: 'kg',     costo: 2800, proveedor: 'Lácteos Sur' },
+  { id: 'INS012', nombre: 'Huevo',                  cat: 'Varios',    unidad: 'unidad', costo: 55,   proveedor: 'Verdulería' },
+  { id: 'INS013', nombre: 'Carne picada',           cat: 'Carnes',    unidad: 'kg',     costo: 1400, proveedor: 'Carnicería Norte' },
+  { id: 'INS014', nombre: 'Peceto',                 cat: 'Carnes',    unidad: 'kg',     costo: 2200, proveedor: 'Carnicería Norte' },
+  { id: 'INS015', nombre: 'Pollo pechuga',          cat: 'Carnes',    unidad: 'kg',     costo: 1600, proveedor: 'Carnicería Norte' },
+  { id: 'INS016', nombre: 'Tomate perita',          cat: 'Verduras',  unidad: 'kg',     costo: 380,  proveedor: 'Verdulería' },
+  { id: 'INS017', nombre: 'Cebolla',                cat: 'Verduras',  unidad: 'kg',     costo: 180,  proveedor: 'Verdulería' },
+  { id: 'INS018', nombre: 'Ajo',                    cat: 'Verduras',  unidad: 'kg',     costo: 950,  proveedor: 'Verdulería' },
+  { id: 'INS019', nombre: 'Pimiento rojo',          cat: 'Verduras',  unidad: 'kg',     costo: 420,  proveedor: 'Verdulería' },
+  { id: 'INS020', nombre: 'Papa',                   cat: 'Verduras',  unidad: 'kg',     costo: 200,  proveedor: 'Verdulería' },
+  { id: 'INS021', nombre: 'Pan rallado',            cat: 'Secos',     unidad: 'kg',     costo: 280,  proveedor: 'Supermercado' },
+  { id: 'INS022', nombre: 'Levadura seca',          cat: 'Secos',     unidad: 'gr',     costo: 12,   proveedor: 'Almacén' },
+  { id: 'INS023', nombre: 'Salsa de tomate',        cat: 'Envasados', unidad: 'lt',     costo: 320,  proveedor: 'Supermercado' },
+  { id: 'INS024', nombre: 'Orégano',                cat: 'Especias',  unidad: 'gr',     costo: 8,    proveedor: 'Almacén' },
+  { id: 'INS025', nombre: 'Pimienta negra',         cat: 'Especias',  unidad: 'gr',     costo: 15,   proveedor: 'Almacén' },
+];
+/**
+ * storage.js
+ * Maneja la persistencia de datos en localStorage.
+ * Los datos sobreviven al cerrar el navegador.
+ */
+
+const Storage = (() => {
+  const KEYS = {
+    insumos:  'srec_insumos',
+    recetas:  'srec_recetas',
+    nextId:   'srec_nextid',
+    nextInsId:'srec_nextinsid',
+  };
+
+  function get(key, fallback) {
+    try {
+      const raw = localStorage.getItem(key);
+      return raw !== null ? JSON.parse(raw) : fallback;
+    } catch {
+      return fallback;
+    }
+  }
+
+  function set(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch {}
+  }
+
+  // ── Insumos ────────────────────────────────────────────────
+  function getInsumos() {
+    const saved = get(KEYS.insumos, null);
+    if (saved !== null) return saved;
+    // Primera vez: cargar los de defecto
+    set(KEYS.insumos, INSUMOS_DEFAULT);
+    return INSUMOS_DEFAULT;
+  }
+  function saveInsumos(list) { set(KEYS.insumos, list); }
+
+  // ── Recetas ────────────────────────────────────────────────
+  function getRecetas() { return get(KEYS.recetas, []); }
+  function saveRecetas(list) { set(KEYS.recetas, list); }
+
+  // ── IDs ────────────────────────────────────────────────────
+  function nextRecetaId() {
+    const n = get(KEYS.nextId, 1);
+    set(KEYS.nextId, n + 1);
+    return n;
+  }
+  function nextInsumoId() {
+    const n = get(KEYS.nextInsId, INSUMOS_DEFAULT.length + 1);
+    set(KEYS.nextInsId, n + 1);
+    return 'INS' + String(n).padStart(3, '0');
+  }
+
+  return { getInsumos, saveInsumos, getRecetas, saveRecetas, nextRecetaId, nextInsumoId };
+})();
+/**
+ * insumos.js
+ * Gestión de insumos: listar, agregar, editar, buscar.
+ */
+
+const InsumosModule = (() => {
+  let insumos = [];
+  let editId   = null;
+
+  function init() {
+    insumos = Storage.getInsumos();
+    document.getElementById('btn-nuevo-insumo').addEventListener('click', showForm);
+    document.getElementById('btn-guardar-insumo').addEventListener('click', guardar);
+    document.getElementById('btn-cancelar-insumo').addEventListener('click', hideForm);
+    document.getElementById('busq-insumo').addEventListener('input', render);
+  }
+
+  function getAll()             { return insumos; }
+  function getByNombre(nombre)  { return insumos.find(i => i.nombre === nombre); }
+
+  function showForm(ins = null) {
+    editId = ins ? ins.id : null;
+    document.getElementById('form-ins-title').textContent = ins ? `Editar — ${ins.nombre}` : 'Nuevo insumo';
+    document.getElementById('ins-nombre').value    = ins ? ins.nombre    : '';
+    document.getElementById('ins-cat').value       = ins ? ins.cat       : 'Secos';
+    document.getElementById('ins-unidad').value    = ins ? ins.unidad    : 'kg';
+    document.getElementById('ins-costo').value     = ins ? ins.costo     : '';
+    document.getElementById('ins-proveedor').value = ins ? ins.proveedor : '';
+    document.getElementById('form-insumo').style.display = 'block';
+    document.getElementById('ins-nombre').focus();
+  }
+
+  function hideForm() {
+    document.getElementById('form-insumo').style.display = 'none';
+    editId = null;
+  }
+
+  function guardar() {
+    const nombre    = document.getElementById('ins-nombre').value.trim();
+    const costo     = parseFloat(document.getElementById('ins-costo').value);
+    const cat       = document.getElementById('ins-cat').value;
+    const unidad    = document.getElementById('ins-unidad').value;
+    const proveedor = document.getElementById('ins-proveedor').value.trim();
+
+    if (!nombre)           { alert('Ingresá el nombre del insumo.'); return; }
+    if (isNaN(costo) || costo <= 0) { alert('Ingresá un costo válido.'); return; }
+
+    if (editId) {
+      const ins = insumos.find(i => i.id === editId);
+      if (ins) Object.assign(ins, { nombre, cat, unidad, costo, proveedor });
+    } else {
+      insumos.push({ id: Storage.nextInsumoId(), nombre, cat, unidad, costo, proveedor });
+    }
+
+    Storage.saveInsumos(insumos);
+    hideForm();
+    render();
+    // Actualizar dropdowns en el formulario de receta
+    RecetasModule.refreshDropdowns();
+  }
+
+  function render() {
+    const busq = (document.getElementById('busq-insumo').value || '').toLowerCase();
+    const lista = document.getElementById('lista-insumos');
+
+    const filtrados = insumos.filter(i =>
+      i.nombre.toLowerCase().includes(busq) ||
+      i.cat.toLowerCase().includes(busq) ||
+      (i.proveedor || '').toLowerCase().includes(busq)
+    );
+
+    if (!filtrados.length) {
+      lista.innerHTML = '<p class="empty">No se encontraron insumos.</p>';
+      return;
+    }
+
+    lista.innerHTML = `
+      <div class="table-wrap">
+        <table class="insumos-table">
+          <thead>
+            <tr>
+              <th>Nombre</th><th>Categoría</th><th>Unidad</th>
+              <th>Costo ($)</th><th>Proveedor</th><th></th>
+            </tr>
+          </thead>
+          <tbody>
+            ${filtrados.map(ins => `
+              <tr>
+                <td><strong>${ins.nombre}</strong></td>
+                <td><span class="badge badge-gray">${ins.cat}</span></td>
+                <td style="text-align:center">${ins.unidad}</td>
+                <td style="text-align:right;font-weight:600;color:var(--green-dark)">${fmt(ins.costo)}</td>
+                <td style="color:var(--gray-text)">${ins.proveedor || ''}</td>
+                <td>
+                  <button class="btn btn-sm btn-outline" onclick="InsumosModule.edit('${ins.id}')">Editar</button>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  function edit(id) {
+    const ins = insumos.find(i => i.id === id);
+    if (ins) showForm(ins);
+  }
+
+  return { init, getAll, getByNombre, render, edit };
+})();
+/**
+ * recetas.js
+ * Gestión de recetas: formulario, guardar, buscar, ver detalle, editar, eliminar.
+ */
+
+const RecetasModule = (() => {
+  let recetas  = [];
+  let ingRows  = [];
+
+  function init() {
+    recetas = Storage.getRecetas();
+
+    document.getElementById('btn-add-ing').addEventListener('click', () => { addIngRow(); renderIngTable(); });
+    document.getElementById('btn-guardar').addEventListener('click', guardar);
+    document.getElementById('btn-limpiar').addEventListener('click', () => limpiar(true));
+    document.getElementById('r-pventa').addEventListener('input', calcKpis);
+    document.getElementById('r-porciones').addEventListener('input', calcKpis);
+    document.getElementById('busq-receta').addEventListener('input', renderLista);
+
+    // Filas iniciales vacías
+    addIngRow(); addIngRow(); addIngRow();
+    renderIngTable();
+  }
+
+  // ── Helpers ─────────────────────────────────────────────────
+  function addIngRow() {
+    ingRows.push({ nombre: '', cantidad: '' });
+  }
+
+  function getInsumo(nombre) { return InsumosModule.getByNombre(nombre); }
+
+  function calcTotal() {
+    return ingRows.reduce((sum, ing) => {
+      const ins = getInsumo(ing.nombre);
+      if (ins && ing.cantidad !== '') sum += (parseFloat(ing.cantidad) || 0) * ins.costo;
+      return sum;
+    }, 0);
+  }
+
+  function calcKpis() {
+    const total   = calcTotal();
+    const pv      = parseFloat(document.getElementById('r-pventa').value) || 0;
+    const porc    = parseInt(document.getElementById('r-porciones').value) || 1;
+
+    document.getElementById('total-costo').textContent = fmt(total);
+    document.getElementById('kpi-cpp').textContent     = porc > 0 ? fmt(total / porc) : '—';
+
+    if (pv > 0) {
+      const gan    = pv - total;
+      const margen = (gan / pv) * 100;
+      const ganEl  = document.getElementById('kpi-gan');
+      const marEl  = document.getElementById('kpi-margen');
+
+      ganEl.textContent  = fmt(gan);
+      marEl.textContent  = margen.toFixed(1) + '%';
+      ganEl.className    = 'kpi-val' + (gan < 0 ? ' neg' : '');
+      marEl.className    = 'kpi-val' + (margen < 0 ? ' neg' : '');
+    } else {
+      document.getElementById('kpi-gan').textContent    = '—';
+      document.getElementById('kpi-margen').textContent = '—';
+      document.getElementById('kpi-gan').className      = 'kpi-val';
+      document.getElementById('kpi-margen').className   = 'kpi-val';
+    }
+  }
+
+  // ── Ingredient table ─────────────────────────────────────────
+  function renderIngTable() {
+    const tbody = document.getElementById('ing-body');
+    tbody.innerHTML = '';
+
+    ingRows.forEach((ing, idx) => {
+      const ins   = getInsumo(ing.nombre);
+      const unidad = ins ? ins.unidad : '';
+      const cu     = ins ? ins.costo  : null;
+      const sub    = (ins && ing.cantidad !== '') ? (parseFloat(ing.cantidad) || 0) * ins.costo : null;
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td class="col-num" style="color:var(--gray-text);text-align:center">${idx + 1}</td>
+        <td class="col-insumo">
+          <select onchange="RecetasModule.onIngChange(${idx}, this.value)" style="width:100%">
+            <option value="">— elegir —</option>
+            ${InsumosModule.getAll().map(i =>
+              `<option value="${i.nombre}" ${i.nombre === ing.nombre ? 'selected' : ''}>${i.nombre}</option>`
+            ).join('')}
+          </select>
+        </td>
+        <td class="col-unidad td-auto" style="text-align:center">${unidad}</td>
+        <td class="col-cant">
+          <input type="number" min="0" step="0.001" value="${ing.cantidad}"
+            placeholder="0" style="width:100%;text-align:right"
+            onchange="RecetasModule.onCantChange(${idx}, this.value)" />
+        </td>
+        <td class="col-cu td-auto" style="text-align:right">${cu !== null ? fmt(cu) : '—'}</td>
+        <td class="col-sub td-sub">${sub !== null ? fmt(sub) : '—'}</td>
+        <td class="col-del">
+          <button class="del-btn" onclick="RecetasModule.delIng(${idx})" title="Quitar">×</button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    calcKpis();
+  }
+
+  function onIngChange(idx, val) {
+    ingRows[idx].nombre = val;
+    renderIngTable();
+  }
+
+  function onCantChange(idx, val) {
+    ingRows[idx].cantidad = val;
+    calcKpis();
+  }
+
+  function delIng(idx) {
+    ingRows.splice(idx, 1);
+    renderIngTable();
+  }
+
+  function refreshDropdowns() { renderIngTable(); }
+
+  // ── Guardar receta ───────────────────────────────────────────
+  function guardar() {
+    const nombre = document.getElementById('r-nombre').value.trim();
+    if (!nombre) { showMsg('nueva', 'Ingresá el nombre de la receta.', 'err'); return; }
+    if (!ingRows.some(i => i.nombre)) { showMsg('nueva', 'Agregá al menos un ingrediente.', 'err'); return; }
+
+    const total   = calcTotal();
+    const pv      = parseFloat(document.getElementById('r-pventa').value) || 0;
+    const porc    = parseInt(document.getElementById('r-porciones').value) || 1;
+    const gan     = pv > 0 ? pv - total : null;
+    const margen  = pv > 0 ? ((pv - total) / pv) * 100 : null;
+
+    const receta = {
+      id:    Storage.nextRecetaId(),
+      nombre,
+      cat:   document.getElementById('r-cat').value,
+      porciones: porc,
+      tprep: document.getElementById('r-tprep').value || '',
+      tcoc:  document.getElementById('r-tcoc').value  || '',
+      desc:  document.getElementById('r-desc').value  || '',
+      costo: total,
+      pventa: pv,
+      ganancia: gan,
+      margen,
+      ingredientes: ingRows
+        .filter(i => i.nombre)
+        .map(i => {
+          const ins = getInsumo(i.nombre);
+          return {
+            nombre:   i.nombre,
+            cantidad: parseFloat(i.cantidad) || 0,
+            unidad:   ins ? ins.unidad : '',
+            cu:       ins ? ins.costo  : 0,
+            sub:      (parseFloat(i.cantidad) || 0) * (ins ? ins.costo : 0),
+          };
+        }),
+      fecha: new Date().toLocaleDateString('es-AR'),
+    };
+
+    recetas.unshift(receta);
+    Storage.saveRecetas(recetas);
+
+    showMsg('nueva', `Receta "${nombre}" guardada correctamente.`, 'ok');
+    setTimeout(() => limpiar(false), 700);
+  }
+
+  // ── Limpiar formulario ───────────────────────────────────────
+  function limpiar(showConfirm) {
+    if (showConfirm && document.getElementById('r-nombre').value.trim()) {
+      if (!confirm('¿Limpiar el formulario? Se perderán los datos no guardados.')) return;
+    }
+    ['r-nombre','r-cat','r-tprep','r-tcoc','r-desc','r-pventa'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+    document.getElementById('r-porciones').value = '4';
+    ingRows = [];
+    addIngRow(); addIngRow(); addIngRow();
+    renderIngTable();
+    document.getElementById('msg-nueva').innerHTML = '';
+    document.getElementById('r-nombre').focus();
+  }
+
+  // ── Lista de recetas ─────────────────────────────────────────
+  function renderLista() {
+    const busq = (document.getElementById('busq-receta').value || '').toLowerCase();
+    const lista = document.getElementById('lista-recetas');
+    const det   = document.getElementById('detalle-receta');
+    det.style.display  = 'none';
+    lista.style.display = 'flex';
+    lista.style.flexDirection = 'column';
+    lista.style.gap = '10px';
+
+    const filtradas = recetas.filter(r =>
+      r.nombre.toLowerCase().includes(busq) ||
+      (r.cat || '').toLowerCase().includes(busq)
+    );
+
+    if (!filtradas.length) {
+      lista.innerHTML = recetas.length === 0
+        ? '<p class="empty">Todavía no guardaste ninguna receta.<br>Andá a "Nueva receta" para empezar.</p>'
+        : '<p class="empty">No se encontraron recetas con esa búsqueda.</p>';
+      return;
+    }
+
+    lista.innerHTML = filtradas.map(r => `
+      <div class="receta-card" onclick="RecetasModule.verReceta(${r.id})">
+        <div>
+          <div class="nombre">${r.nombre}</div>
+          <div class="meta">
+            ${r.cat ? `<span class="badge badge-gray">${r.cat}</span> · ` : ''}
+            ${r.porciones} porciones · ${r.ingredientes.length} ingrediente${r.ingredientes.length !== 1 ? 's' : ''} · ${r.fecha}
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div class="precio">${fmt(r.costo)}</div>
+          ${r.margen != null
+            ? `<span class="badge ${r.margen >= 25 ? 'badge-green' : 'badge-orange'}">${r.margen.toFixed(1)}% margen</span>`
+            : ''}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // ── Ver detalle ──────────────────────────────────────────────
+  function verReceta(id) {
+    const r = recetas.find(x => x.id === id);
+    if (!r) return;
+
+    document.getElementById('lista-recetas').style.display = 'none';
+    const det = document.getElementById('detalle-receta');
+    det.style.display = 'flex';
+    det.style.flexDirection = 'column';
+    det.style.gap = '14px';
+
+    det.innerHTML = `
+      <button class="btn btn-sm btn-outline" style="align-self:flex-start"
+        onclick="RecetasModule.volverLista()">← Volver</button>
+
+      <div class="card">
+        <div class="detail-header">
+          <div>
+            <h2>${r.nombre}</h2>
+            <div class="detail-meta">
+              ${r.cat ? `<span class="badge badge-gray">${r.cat}</span> · ` : ''}
+              ${r.porciones} porciones
+              ${r.tprep ? ' · Prep: ' + r.tprep + ' min' : ''}
+              ${r.tcoc  ? ' · Cocción: ' + r.tcoc + ' min' : ''}
+              · Guardada el ${r.fecha}
+            </div>
+          </div>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-sm btn-orange" onclick="RecetasModule.editarReceta(${r.id})">Editar</button>
+            <button class="btn btn-sm btn-danger"  onclick="RecetasModule.eliminarReceta(${r.id})">Eliminar</button>
+          </div>
+        </div>
+        ${r.desc ? `<p style="font-size:13px;color:var(--gray-text);margin-top:10px;border-top:1px solid var(--gray-line);padding-top:10px;white-space:pre-wrap">${r.desc}</p>` : ''}
+      </div>
+
+      <div class="card">
+        <p class="sec-title">Ingredientes</p>
+        <div class="table-wrap">
+          <table class="insumos-table">
+            <thead><tr><th>Insumo</th><th>Unidad</th><th style="text-align:right">Cantidad</th><th style="text-align:right">Costo unit.</th><th style="text-align:right">Subtotal</th></tr></thead>
+            <tbody>
+              ${r.ingredientes.map(i => `
+                <tr>
+                  <td><strong>${i.nombre}</strong></td>
+                  <td style="text-align:center">${i.unidad}</td>
+                  <td style="text-align:right">${i.cantidad}</td>
+                  <td style="text-align:right;color:var(--gray-text)">${fmt(i.cu)}</td>
+                  <td style="text-align:right;font-weight:600">${fmt(i.sub)}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi">
+          <div class="kpi-label">Costo total</div>
+          <div class="kpi-val">${fmt(r.costo)}</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Precio de venta</div>
+          <div class="kpi-val" style="color:var(--orange)">${r.pventa ? fmt(r.pventa) : '—'}</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Margen</div>
+          <div class="kpi-val ${r.margen != null && r.margen < 0 ? 'neg' : ''}">${r.margen != null ? r.margen.toFixed(1) + '%' : '—'}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  function volverLista() {
+    document.getElementById('lista-recetas').style.display = 'flex';
+    document.getElementById('detalle-receta').style.display = 'none';
+  }
+
+  // ── Editar ───────────────────────────────────────────────────
+  function editarReceta(id) {
+    const r = recetas.find(x => x.id === id);
+    if (!r) return;
+
+    document.getElementById('r-nombre').value    = r.nombre;
+    document.getElementById('r-cat').value       = r.cat || '';
+    document.getElementById('r-porciones').value = r.porciones;
+    document.getElementById('r-tprep').value     = r.tprep || '';
+    document.getElementById('r-tcoc').value      = r.tcoc  || '';
+    document.getElementById('r-desc').value      = r.desc  || '';
+    document.getElementById('r-pventa').value    = r.pventa || '';
+
+    ingRows = r.ingredientes.map(i => ({ nombre: i.nombre, cantidad: i.cantidad }));
+    if (ingRows.length < 3) {
+      while (ingRows.length < 3) ingRows.push({ nombre: '', cantidad: '' });
+    }
+
+    // Borrar la receta original (se vuelve a guardar con los cambios)
+    recetas = recetas.filter(x => x.id !== id);
+    Storage.saveRecetas(recetas);
+
+    renderIngTable();
+    App.showTab('nueva');
+    showMsg('nueva', `Receta "${r.nombre}" cargada para editar. Al guardar se actualizará.`, 'ok');
+  }
+
+  // ── Eliminar ─────────────────────────────────────────────────
+  function eliminarReceta(id) {
+    const r = recetas.find(x => x.id === id);
+    if (!r || !confirm(`¿Eliminar la receta "${r.nombre}"? Esta acción no se puede deshacer.`)) return;
+    recetas = recetas.filter(x => x.id !== id);
+    Storage.saveRecetas(recetas);
+    volverLista();
+    renderLista();
+  }
+
+  return {
+    init, renderLista, renderIngTable,
+    onIngChange, onCantChange, delIng,
+    verReceta, volverLista, editarReceta, eliminarReceta,
+    refreshDropdowns,
+  };
+})();
+/**
+ * app.js
+ * Punto de entrada principal. Inicializa módulos y maneja la navegación por tabs.
+ */
+
+// ── Formato de moneda ──────────────────────────────────────────
+function fmt(n) {
+  if (isNaN(n) || n === '' || n === null) return '—';
+  return '$' + Number(n).toLocaleString('es-AR', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+}
+
+// ── Mensajes de feedback ───────────────────────────────────────
+function showMsg(panel, text, tipo) {
+  const el = document.getElementById('msg-' + panel);
+  if (!el) return;
+  el.innerHTML = `<div class="msg msg-${tipo === 'ok' ? 'ok' : 'err'}">${text}</div>`;
+  if (tipo === 'ok') setTimeout(() => { el.innerHTML = ''; }, 3000);
+}
+
+// ── App principal ──────────────────────────────────────────────
+const App = (() => {
+  const PANELS = ['nueva', 'recetas', 'insumos'];
+
+  function showTab(name) {
+    document.querySelectorAll('.tab').forEach(el => {
+      el.classList.toggle('active', el.dataset.tab === name);
+    });
+    PANELS.forEach(p => {
+      const panel = document.getElementById('panel-' + p);
+      if (panel) panel.classList.toggle('active', p === name);
+    });
+
+    if (name === 'recetas') RecetasModule.renderLista();
+    if (name === 'insumos') InsumosModule.render();
+  }
+
+  function init() {
+    // Tabs
+    document.querySelectorAll('.tab').forEach(btn => {
+      btn.addEventListener('click', () => showTab(btn.dataset.tab));
+    });
+
+    // Inicializar módulos
+    InsumosModule.init();
+    RecetasModule.init();
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+
+  return { showTab };
+})();
+  </script>
+
+</body>
+</html>
