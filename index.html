@@ -422,20 +422,20 @@ textarea { resize: vertical; }
               <option>Entradas</option><option>Platos Principales</option>
               <option>Pastas</option><option>Pizzas</option>
               <option>Ensaladas</option><option>Postres</option>
-              <option>Bebidas</option><option>Panificados</option><option>Otros</option>
+              <option>Bebidas</option><option>Pescados</option><option>Panificados</option><option>Descartables</option><option>Otros</option>
             </select>
           </div>
           <div class="field span-1">
             <label for="r-porciones">Porciones</label>
-            <input id="r-porciones" type="number" min="1" value="4" />
+            <input id="r-porciones" type="number" min="1" value="4" inputmode="numeric" />
           </div>
           <div class="field span-1">
             <label for="r-tprep">Prep (min)</label>
-            <input id="r-tprep" type="number" min="0" placeholder="0" />
+            <input id="r-tprep" type="number" min="0" placeholder="0" inputmode="numeric" />
           </div>
           <div class="field span-1">
             <label for="r-tcoc">Cocción (min)</label>
-            <input id="r-tcoc" type="number" min="0" placeholder="0" />
+            <input id="r-tcoc" type="number" min="0" placeholder="0" inputmode="numeric" />
           </div>
           <div class="field span-5">
             <label for="r-desc">Descripción / Procedimiento</label>
@@ -472,7 +472,7 @@ textarea { resize: vertical; }
 
       <div class="pv-block">
         <label for="r-pventa">Precio de venta $</label>
-        <input id="r-pventa" type="number" min="0" placeholder="0,00" />
+        <input id="r-pventa" type="number" min="0" placeholder="0,00" inputmode="decimal" />
       </div>
 
       <div class="kpi-row">
@@ -525,7 +525,7 @@ textarea { resize: vertical; }
           </div>
           <div class="field span-2">
             <label for="ins-costo">Costo ($) *</label>
-            <input id="ins-costo" type="number" min="0" step="0.01" placeholder="0,00" />
+            <input id="ins-costo" type="number" min="0" step="0.01" placeholder="0,00" inputmode="decimal" />
           </div>
           <div class="field span-3">
             <label for="ins-proveedor">Proveedor</label>
@@ -828,7 +828,7 @@ const RecetasModule = (() => {
         </td>
         <td class="col-unidad td-auto" style="text-align:center">${unidad}</td>
         <td class="col-cant">
-          <input type="number" min="0" step="0.001" value="${ing.cantidad}"
+          <input type="number" min="0" step="0.001" inputmode="decimal" value="${ing.cantidad}"
             placeholder="0" style="width:100%;text-align:right"
             onchange="RecetasModule.onCantChange(${idx}, this.value)" />
         </td>
