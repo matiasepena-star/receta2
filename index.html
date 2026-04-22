@@ -27,17 +27,17 @@
 –shadow:      0 1px 4px rgba(0,0,0,.08);
 }
 
-body {
+html, body {
 font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, Arial, sans-serif;
 font-size: 14px;
-color: var(–text);
-background: #F0F2F0;
+color: #1A1A1A;
+background-color: #F0F2F0 !important;
 min-height: 100vh;
 }
 
 /* ── Header ───────────────────────────────────────────────── */
 .app-header {
-background: var(–green-dark);
+background: #1B4F35;
 color: #fff;
 padding: 0 20px;
 }
@@ -54,8 +54,8 @@ height: 52px;
 
 /* ── Tabs ─────────────────────────────────────────────────── */
 .tabs {
-background: var(–white);
-border-bottom: 1px solid var(–gray-line);
+background: #FFFFFF;
+border-bottom: 1px solid #E0E0E0;
 display: flex;
 padding: 0 20px;
 max-width: 100%;
@@ -65,7 +65,7 @@ overflow-x: auto;
 padding: 12px 20px;
 font-size: 13px;
 font-weight: 500;
-color: var(–gray-text);
+color: #666666;
 background: none;
 border: none;
 border-bottom: 2px solid transparent;
@@ -73,8 +73,8 @@ cursor: pointer;
 white-space: nowrap;
 transition: color .15s, border-color .15s;
 }
-.tab:hover { color: var(–text); }
-.tab.active { color: var(–green-dark); border-bottom-color: var(–green-dark); }
+.tab:hover { color: #1A1A1A; }
+.tab.active { color: #1B4F35; border-bottom-color: #1B4F35; }
 
 /* ── Content ──────────────────────────────────────────────── */
 .content {
@@ -89,11 +89,11 @@ padding: 20px 16px 48px;
 
 /* ── Card ─────────────────────────────────────────────────── */
 .card {
-background: var(–white);
-border: 1px solid var(–gray-line);
-border-radius: var(–radius-lg);
+background: #FFFFFF;
+border: 1px solid #E0E0E0;
+border-radius: 12px;
 padding: 16px;
-box-shadow: var(–shadow);
+box-shadow: 0 1px 4px rgba(0,0,0,.08);
 }
 
 .sec-title {
@@ -101,7 +101,7 @@ font-size: 11px;
 font-weight: 600;
 text-transform: uppercase;
 letter-spacing: .06em;
-color: var(–gray-text);
+color: #666666;
 margin-bottom: 12px;
 }
 
@@ -122,7 +122,7 @@ gap: 10px;
 label {
 font-size: 11px;
 font-weight: 600;
-color: var(–gray-text);
+color: #666666;
 text-transform: uppercase;
 letter-spacing: .04em;
 }
@@ -130,17 +130,17 @@ letter-spacing: .04em;
 input, select, textarea {
 width: 100%;
 padding: 8px 10px;
-border: 1px solid var(–gray-line);
-border-radius: var(–radius);
+border: 1px solid #E0E0E0;
+border-radius: 8px;
 font-size: 13px;
 font-family: inherit;
-color: var(–text);
-background: var(–white);
+color: #1A1A1A;
+background: #FFFFFF;
 transition: border-color .15s;
 }
 input:focus, select:focus, textarea:focus {
 outline: none;
-border-color: var(–green-mid);
+border-color: #2D7A50;
 box-shadow: 0 0 0 3px rgba(45,122,80,.12);
 }
 textarea { resize: vertical; }
@@ -154,7 +154,7 @@ border-collapse: collapse;
 font-size: 12px;
 }
 .ing-table th {
-background: var(–green-dark);
+background: #1B4F35;
 color: #fff;
 padding: 8px 10px;
 text-align: left;
@@ -164,10 +164,10 @@ white-space: nowrap;
 }
 .ing-table td {
 padding: 6px 8px;
-border-bottom: 1px solid var(–gray-line);
+border-bottom: 1px solid #E0E0E0;
 vertical-align: middle;
 }
-.ing-table tr:nth-child(even) td { background: var(–green-light); }
+.ing-table tr:nth-child(even) td { background: #E8F5EE; }
 .ing-table td input,
 .ing-table td select {
 padding: 5px 7px;
@@ -197,21 +197,21 @@ transition: opacity .15s;
 .del-btn:hover { opacity: 1; }
 
 .td-auto {
-color: var(–gray-text);
+color: #666666;
 font-style: italic;
 font-size: 12px;
 }
 .td-sub {
 font-weight: 600;
-color: var(–green-dark);
+color: #1B4F35;
 text-align: right;
 }
 
 /* ── Total bar ────────────────────────────────────────────── */
 .total-bar {
-background: var(–green-dark);
+background: #1B4F35;
 color: #fff;
-border-radius: var(–radius-lg);
+border-radius: 12px;
 padding: 12px 20px;
 display: flex;
 justify-content: space-between;
@@ -222,16 +222,16 @@ align-items: center;
 
 /* ── Price block ──────────────────────────────────────────── */
 .pv-block {
-background: var(–orange-light);
-border: 1px solid var(–orange);
-border-radius: var(–radius-lg);
+background: #FEF0E6;
+border: 1px solid #C8500A;
+border-radius: 12px;
 padding: 12px 20px;
 display: flex;
 align-items: center;
 gap: 14px;
 }
 .pv-block label {
-color: var(–orange);
+color: #C8500A;
 font-size: 13px;
 font-weight: 700;
 text-transform: none;
@@ -242,10 +242,10 @@ white-space: nowrap;
 max-width: 180px;
 font-size: 16px;
 font-weight: 700;
-color: var(–orange);
-border-color: var(–orange);
+color: #C8500A;
+border-color: #C8500A;
 }
-.pv-block input:focus { box-shadow: 0 0 0 3px rgba(200,80,10,.15); border-color: var(–orange); }
+.pv-block input:focus { box-shadow: 0 0 0 3px rgba(200,80,10,.15); border-color: #C8500A; }
 
 /* ── KPI row ──────────────────────────────────────────────── */
 .kpi-row {
@@ -254,37 +254,37 @@ grid-template-columns: repeat(3, 1fr);
 gap: 12px;
 }
 .kpi {
-background: var(–white);
-border: 1px solid var(–gray-line);
-border-radius: var(–radius-lg);
+background: #FFFFFF;
+border: 1px solid #E0E0E0;
+border-radius: 12px;
 padding: 12px 16px;
 text-align: center;
-box-shadow: var(–shadow);
+box-shadow: 0 1px 4px rgba(0,0,0,.08);
 }
-.kpi-label { font-size: 11px; color: var(–gray-text); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px; }
-.kpi-val   { font-size: 22px; font-weight: 700; color: var(–green-dark); }
+.kpi-label { font-size: 11px; color: #666666; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px; }
+.kpi-val   { font-size: 22px; font-weight: 700; color: #1B4F35; }
 .kpi-val.neg { color: #c0392b; }
 
 /* ── Buttons ──────────────────────────────────────────────── */
 .btn {
 padding: 9px 20px;
-border-radius: var(–radius);
+border-radius: 8px;
 font-size: 13px;
 font-weight: 600;
 cursor: pointer;
-border: 1px solid var(–gray-line);
-background: var(–white);
-color: var(–text);
+border: 1px solid #E0E0E0;
+background: #FFFFFF;
+color: #1A1A1A;
 transition: background .15s, border-color .15s, transform .1s;
 }
-.btn:hover { background: var(–gray-bg); }
+.btn:hover { background: #F4F4F4; }
 .btn:active { transform: scale(.98); }
 
-.btn-green  { background: var(–green-dark); color: #fff; border-color: var(–green-dark); }
-.btn-green:hover { background: var(–green-mid); border-color: var(–green-mid); }
+.btn-green  { background: #1B4F35; color: #fff; border-color: #1B4F35; }
+.btn-green:hover { background: #2D7A50; border-color: #2D7A50; }
 
-.btn-orange { background: var(–orange); color: #fff; border-color: var(–orange); }
-.btn-outline { background: var(–white); color: var(–text); }
+.btn-orange { background: #C8500A; color: #fff; border-color: #C8500A; }
+.btn-outline { background: #FFFFFF; color: #1A1A1A; }
 
 .btn-sm { padding: 6px 12px; font-size: 12px; }
 .btn-danger { background: #fdecea; color: #c0392b; border-color: #f5b7b1; }
@@ -298,9 +298,9 @@ transition: background .15s, border-color .15s, transform .1s;
 
 /* ── Recipe cards ─────────────────────────────────────────── */
 .receta-card {
-background: var(–white);
-border: 1px solid var(–gray-line);
-border-radius: var(–radius-lg);
+background: #FFFFFF;
+border: 1px solid #E0E0E0;
+border-radius: 12px;
 padding: 12px 16px;
 cursor: pointer;
 transition: border-color .15s, box-shadow .15s;
@@ -308,12 +308,12 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 gap: 12px;
-box-shadow: var(–shadow);
+box-shadow: 0 1px 4px rgba(0,0,0,.08);
 }
-.receta-card:hover { border-color: var(–green-mid); box-shadow: 0 2px 8px rgba(0,0,0,.1); }
+.receta-card:hover { border-color: #2D7A50; box-shadow: 0 2px 8px rgba(0,0,0,.1); }
 .receta-card .nombre { font-weight: 600; font-size: 14px; }
-.receta-card .meta   { font-size: 12px; color: var(–gray-text); margin-top: 3px; }
-.receta-card .precio { font-weight: 700; color: var(–green-dark); font-size: 15px; white-space: nowrap; }
+.receta-card .meta   { font-size: 12px; color: #666666; margin-top: 3px; }
+.receta-card .precio { font-weight: 700; color: #1B4F35; font-size: 15px; white-space: nowrap; }
 
 /* ── Badges ───────────────────────────────────────────────── */
 .badge {
@@ -323,9 +323,9 @@ border-radius: 99px;
 font-size: 11px;
 font-weight: 600;
 }
-.badge-green  { background: var(–green-light); color: var(–green-dark); }
-.badge-orange { background: var(–orange-light); color: var(–orange); }
-.badge-gray   { background: var(–gray-bg); color: var(–gray-text); }
+.badge-green  { background: #E8F5EE; color: #1B4F35; }
+.badge-orange { background: #FEF0E6; color: #C8500A; }
+.badge-gray   { background: #F4F4F4; color: #666666; }
 
 /* ── Detail view ──────────────────────────────────────────── */
 .detail-header {
@@ -337,7 +337,7 @@ gap: 10px;
 margin-bottom: 14px;
 }
 .detail-header h2 { font-size: 18px; font-weight: 700; }
-.detail-meta { font-size: 12px; color: var(–gray-text); margin-top: 3px; }
+.detail-meta { font-size: 12px; color: #666666; margin-top: 3px; }
 
 /* ── Insumos table ────────────────────────────────────────── */
 .insumos-table {
@@ -346,7 +346,7 @@ border-collapse: collapse;
 font-size: 13px;
 }
 .insumos-table th {
-background: var(–green-dark);
+background: #1B4F35;
 color: #fff;
 padding: 8px 12px;
 text-align: left;
@@ -355,14 +355,14 @@ font-weight: 600;
 }
 .insumos-table td {
 padding: 8px 12px;
-border-bottom: 1px solid var(–gray-line);
+border-bottom: 1px solid #E0E0E0;
 }
-.insumos-table tr:nth-child(even) td { background: var(–green-light); }
+.insumos-table tr:nth-child(even) td { background: #E8F5EE; }
 
 /* ── Empty state ──────────────────────────────────────────── */
 .empty {
 text-align: center;
-color: var(–gray-text);
+color: #666666;
 font-size: 14px;
 padding: 40px 20px;
 font-style: italic;
@@ -371,12 +371,12 @@ font-style: italic;
 /* ── Messages ─────────────────────────────────────────────── */
 .msg {
 padding: 10px 16px;
-border-radius: var(–radius);
+border-radius: 8px;
 font-size: 13px;
 font-weight: 600;
 text-align: center;
 }
-.msg-ok  { background: var(–green-light); color: var(–green-dark); }
+.msg-ok  { background: #E8F5EE; color: #1B4F35; }
 .msg-err { background: #fdecea; color: #c0392b; }
 
 /* ── Responsive ───────────────────────────────────────────── */
@@ -715,8 +715,8 @@ const InsumosModule = (() => {
                 <td><strong>${ins.nombre}</strong></td>
                 <td><span class="badge badge-gray">${ins.cat}</span></td>
                 <td style="text-align:center">${ins.unidad}</td>
-                <td style="text-align:right;font-weight:600;color:var(--green-dark)">${fmt(ins.costo)}</td>
-                <td style="color:var(--gray-text)">${ins.proveedor || ''}</td>
+                <td style="text-align:right;font-weight:600;color:#1B4F35">${fmt(ins.costo)}</td>
+                <td style="color:#666666">${ins.proveedor || ''}</td>
                 <td>
                   <button class="btn btn-sm btn-outline" onclick="InsumosModule.edit('${ins.id}')">Editar</button>
                 </td>
@@ -813,7 +813,7 @@ const RecetasModule = (() => {
 
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td class="col-num" style="color:var(--gray-text);text-align:center">${idx + 1}</td>
+        <td class="col-num" style="color:#666666;text-align:center">${idx + 1}</td>
         <td class="col-insumo">
           <select onchange="RecetasModule.onIngChange(${idx}, this.value)" style="width:100%">
             <option value="">— elegir —</option>
@@ -993,7 +993,7 @@ const RecetasModule = (() => {
             <button class="btn btn-sm btn-danger"  onclick="RecetasModule.eliminarReceta(${r.id})">Eliminar</button>
           </div>
         </div>
-        ${r.desc ? `<p style="font-size:13px;color:var(--gray-text);margin-top:10px;border-top:1px solid var(--gray-line);padding-top:10px;white-space:pre-wrap">${r.desc}</p>` : ''}
+        ${r.desc ? `<p style="font-size:13px;color:#666666;margin-top:10px;border-top:1px solid #E0E0E0;padding-top:10px;white-space:pre-wrap">${r.desc}</p>` : ''}
       </div>
 
       <div class="card">
@@ -1006,7 +1006,7 @@ const RecetasModule = (() => {
                 <tr>
                   <td><strong>${i.nombre}</strong></td>
                   <td style="text-align:right">${i.cantidad} ${i.unidad}</td>
-                  <td style="text-align:right;color:var(--gray-text)">${fmt(i.cu)}</td>
+                  <td style="text-align:right;color:#666666">${fmt(i.cu)}</td>
                   <td style="text-align:right;font-weight:600">${fmt(i.sub)}</td>
                 </tr>
               `).join('')}
@@ -1022,7 +1022,7 @@ const RecetasModule = (() => {
         </div>
         <div class="kpi">
           <div class="kpi-label">Precio de venta</div>
-          <div class="kpi-val" style="color:var(--orange)">${r.pventa ? fmt(r.pventa) : '—'}</div>
+          <div class="kpi-val" style="color:#C8500A">${r.pventa ? fmt(r.pventa) : '—'}</div>
         </div>
         <div class="kpi">
           <div class="kpi-label">Margen</div>
