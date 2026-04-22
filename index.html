@@ -748,8 +748,8 @@ const RecetasModule = (() => {
     recetas = Storage.getRecetas();
 
     document.getElementById('btn-add-ing').addEventListener('click', () => { addIngRow(); renderIngTable(); });
-    document.getElementById('btn-guardar').addEventListener('click', guardar);
-    document.getElementById('btn-limpiar').addEventListener('click', () => limpiar(true));
+    document.getElementById('btn-guardar').addEventListener('click', () => RecetasModule.guardar());
+    document.getElementById('btn-limpiar').addEventListener('click', () => RecetasModule.limpiar(true));
     document.getElementById('r-pventa').addEventListener('input', calcKpis);
     document.getElementById('r-porciones').addEventListener('input', calcKpis);
     document.getElementById('busq-receta').addEventListener('input', renderLista);
@@ -874,8 +874,6 @@ const RecetasModule = (() => {
       nombre,
       cat:   document.getElementById('r-cat').value,
       porciones: porc,
-      tprep: document.getElementById('r-tprep').value || '',
-      tcoc:  document.getElementById('r-tcoc').value  || '',
       desc:  document.getElementById('r-desc').value  || '',
       costo: total,
       pventa: pv,
@@ -1078,7 +1076,7 @@ const RecetasModule = (() => {
     init, renderLista, renderIngTable,
     onIngChange, onCantChange, delIng,
     verReceta, volverLista, editarReceta, eliminarReceta,
-    refreshDropdowns,
+    refreshDropdowns, guardar, limpiar,
   };
 })();
 /**
