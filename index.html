@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -9,77 +10,77 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --green-dark:  #1B4F35;
-  --green-mid:   #2D7A50;
-  --green-light: #E8F5EE;
-  --orange:      #C8500A;
-  --orange-light:#FEF0E6;
-  --amber:       #9A6F00;
-  --amber-light: #FFF8DC;
-  --gray-bg:     #F4F4F4;
-  --gray-line:   #E0E0E0;
-  --gray-text:   #666666;
-  --text:        #1A1A1A;
-  --white:       #FFFFFF;
-  --radius:      8px;
-  --radius-lg:   12px;
-  --shadow:      0 1px 4px rgba(0,0,0,.08);
+–green-dark:  #1B4F35;
+–green-mid:   #2D7A50;
+–green-light: #E8F5EE;
+–orange:      #C8500A;
+–orange-light:#FEF0E6;
+–amber:       #9A6F00;
+–amber-light: #FFF8DC;
+–gray-bg:     #F4F4F4;
+–gray-line:   #E0E0E0;
+–gray-text:   #666666;
+–text:        #1A1A1A;
+–white:       #FFFFFF;
+–radius:      8px;
+–radius-lg:   12px;
+–shadow:      0 1px 4px rgba(0,0,0,.08);
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-  font-size: 14px;
-  color: var(--text);
-  background: #F0F2F0;
-  min-height: 100vh;
+font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, Arial, sans-serif;
+font-size: 14px;
+color: var(–text);
+background: #F0F2F0;
+min-height: 100vh;
 }
 
 /* ── Header ───────────────────────────────────────────────── */
 .app-header {
-  background: var(--green-dark);
-  color: #fff;
-  padding: 0 20px;
+background: var(–green-dark);
+color: #fff;
+padding: 0 20px;
 }
 .header-inner {
-  max-width: 960px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  height: 52px;
+max-width: 960px;
+margin: 0 auto;
+display: flex;
+align-items: center;
+gap: 10px;
+height: 52px;
 }
 .header-logo { font-size: 22px; }
 .app-header h1 { font-size: 17px; font-weight: 600; letter-spacing: .01em; }
 
 /* ── Tabs ─────────────────────────────────────────────────── */
 .tabs {
-  background: var(--white);
-  border-bottom: 1px solid var(--gray-line);
-  display: flex;
-  padding: 0 20px;
-  max-width: 100%;
-  overflow-x: auto;
+background: var(–white);
+border-bottom: 1px solid var(–gray-line);
+display: flex;
+padding: 0 20px;
+max-width: 100%;
+overflow-x: auto;
 }
 .tab {
-  padding: 12px 20px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--gray-text);
-  background: none;
-  border: none;
-  border-bottom: 2px solid transparent;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: color .15s, border-color .15s;
+padding: 12px 20px;
+font-size: 13px;
+font-weight: 500;
+color: var(–gray-text);
+background: none;
+border: none;
+border-bottom: 2px solid transparent;
+cursor: pointer;
+white-space: nowrap;
+transition: color .15s, border-color .15s;
 }
-.tab:hover { color: var(--text); }
-.tab.active { color: var(--green-dark); border-bottom-color: var(--green-dark); }
+.tab:hover { color: var(–text); }
+.tab.active { color: var(–green-dark); border-bottom-color: var(–green-dark); }
 
 /* ── Content ──────────────────────────────────────────────── */
 .content {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 20px 16px 48px;
+max-width: 960px;
+margin: 0 auto;
+padding: 20px 16px 48px;
 }
 
 /* ── Panels ───────────────────────────────────────────────── */
@@ -88,27 +89,27 @@ body {
 
 /* ── Card ─────────────────────────────────────────────────── */
 .card {
-  background: var(--white);
-  border: 1px solid var(--gray-line);
-  border-radius: var(--radius-lg);
-  padding: 16px;
-  box-shadow: var(--shadow);
+background: var(–white);
+border: 1px solid var(–gray-line);
+border-radius: var(–radius-lg);
+padding: 16px;
+box-shadow: var(–shadow);
 }
 
 .sec-title {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  color: var(--gray-text);
-  margin-bottom: 12px;
+font-size: 11px;
+font-weight: 600;
+text-transform: uppercase;
+letter-spacing: .06em;
+color: var(–gray-text);
+margin-bottom: 12px;
 }
 
 /* ── Form grid ────────────────────────────────────────────── */
 .form-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 10px;
+display: grid;
+grid-template-columns: repeat(6, 1fr);
+gap: 10px;
 }
 .field { display: flex; flex-direction: column; gap: 4px; }
 .field.span-1 { grid-column: span 1; }
@@ -119,28 +120,28 @@ body {
 .field.span-6 { grid-column: span 6; }
 
 label {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--gray-text);
-  text-transform: uppercase;
-  letter-spacing: .04em;
+font-size: 11px;
+font-weight: 600;
+color: var(–gray-text);
+text-transform: uppercase;
+letter-spacing: .04em;
 }
 
 input, select, textarea {
-  width: 100%;
-  padding: 8px 10px;
-  border: 1px solid var(--gray-line);
-  border-radius: var(--radius);
-  font-size: 13px;
-  font-family: inherit;
-  color: var(--text);
-  background: var(--white);
-  transition: border-color .15s;
+width: 100%;
+padding: 8px 10px;
+border: 1px solid var(–gray-line);
+border-radius: var(–radius);
+font-size: 13px;
+font-family: inherit;
+color: var(–text);
+background: var(–white);
+transition: border-color .15s;
 }
 input:focus, select:focus, textarea:focus {
-  outline: none;
-  border-color: var(--green-mid);
-  box-shadow: 0 0 0 3px rgba(45,122,80,.12);
+outline: none;
+border-color: var(–green-mid);
+box-shadow: 0 0 0 3px rgba(45,122,80,.12);
 }
 textarea { resize: vertical; }
 
@@ -148,30 +149,30 @@ textarea { resize: vertical; }
 .table-wrap { overflow-x: auto; margin-bottom: 10px; }
 
 .ing-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 12px;
+width: 100%;
+border-collapse: collapse;
+font-size: 12px;
 }
 .ing-table th {
-  background: var(--green-dark);
-  color: #fff;
-  padding: 8px 10px;
-  text-align: left;
-  font-weight: 600;
-  font-size: 11px;
-  white-space: nowrap;
+background: var(–green-dark);
+color: #fff;
+padding: 8px 10px;
+text-align: left;
+font-weight: 600;
+font-size: 11px;
+white-space: nowrap;
 }
 .ing-table td {
-  padding: 6px 8px;
-  border-bottom: 1px solid var(--gray-line);
-  vertical-align: middle;
+padding: 6px 8px;
+border-bottom: 1px solid var(–gray-line);
+vertical-align: middle;
 }
-.ing-table tr:nth-child(even) td { background: var(--green-light); }
+.ing-table tr:nth-child(even) td { background: var(–green-light); }
 .ing-table td input,
 .ing-table td select {
-  padding: 5px 7px;
-  font-size: 12px;
-  border-radius: 5px;
+padding: 5px 7px;
+font-size: 12px;
+border-radius: 5px;
 }
 
 .col-num    { width: 32px; text-align: center; }
@@ -183,107 +184,107 @@ textarea { resize: vertical; }
 .col-del    { width: 30px; }
 
 .del-btn {
-  background: none;
-  border: none;
-  color: #c0392b;
-  font-size: 18px;
-  cursor: pointer;
-  line-height: 1;
-  padding: 0 4px;
-  opacity: .7;
-  transition: opacity .15s;
+background: none;
+border: none;
+color: #c0392b;
+font-size: 18px;
+cursor: pointer;
+line-height: 1;
+padding: 0 4px;
+opacity: .7;
+transition: opacity .15s;
 }
 .del-btn:hover { opacity: 1; }
 
 .td-auto {
-  color: var(--gray-text);
-  font-style: italic;
-  font-size: 12px;
+color: var(–gray-text);
+font-style: italic;
+font-size: 12px;
 }
 .td-sub {
-  font-weight: 600;
-  color: var(--green-dark);
-  text-align: right;
+font-weight: 600;
+color: var(–green-dark);
+text-align: right;
 }
 
 /* ── Total bar ────────────────────────────────────────────── */
 .total-bar {
-  background: var(--green-dark);
-  color: #fff;
-  border-radius: var(--radius-lg);
-  padding: 12px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+background: var(–green-dark);
+color: #fff;
+border-radius: var(–radius-lg);
+padding: 12px 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
 }
 .total-label { font-size: 12px; opacity: .8; font-weight: 500; }
 .total-val   { font-size: 22px; font-weight: 700; }
 
 /* ── Price block ──────────────────────────────────────────── */
 .pv-block {
-  background: var(--orange-light);
-  border: 1px solid var(--orange);
-  border-radius: var(--radius-lg);
-  padding: 12px 20px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
+background: var(–orange-light);
+border: 1px solid var(–orange);
+border-radius: var(–radius-lg);
+padding: 12px 20px;
+display: flex;
+align-items: center;
+gap: 14px;
 }
 .pv-block label {
-  color: var(--orange);
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: none;
-  letter-spacing: 0;
-  white-space: nowrap;
+color: var(–orange);
+font-size: 13px;
+font-weight: 700;
+text-transform: none;
+letter-spacing: 0;
+white-space: nowrap;
 }
 .pv-block input {
-  max-width: 180px;
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--orange);
-  border-color: var(--orange);
+max-width: 180px;
+font-size: 16px;
+font-weight: 700;
+color: var(–orange);
+border-color: var(–orange);
 }
-.pv-block input:focus { box-shadow: 0 0 0 3px rgba(200,80,10,.15); border-color: var(--orange); }
+.pv-block input:focus { box-shadow: 0 0 0 3px rgba(200,80,10,.15); border-color: var(–orange); }
 
 /* ── KPI row ──────────────────────────────────────────────── */
 .kpi-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 12px;
 }
 .kpi {
-  background: var(--white);
-  border: 1px solid var(--gray-line);
-  border-radius: var(--radius-lg);
-  padding: 12px 16px;
-  text-align: center;
-  box-shadow: var(--shadow);
+background: var(–white);
+border: 1px solid var(–gray-line);
+border-radius: var(–radius-lg);
+padding: 12px 16px;
+text-align: center;
+box-shadow: var(–shadow);
 }
-.kpi-label { font-size: 11px; color: var(--gray-text); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px; }
-.kpi-val   { font-size: 22px; font-weight: 700; color: var(--green-dark); }
+.kpi-label { font-size: 11px; color: var(–gray-text); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px; }
+.kpi-val   { font-size: 22px; font-weight: 700; color: var(–green-dark); }
 .kpi-val.neg { color: #c0392b; }
 
 /* ── Buttons ──────────────────────────────────────────────── */
 .btn {
-  padding: 9px 20px;
-  border-radius: var(--radius);
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  border: 1px solid var(--gray-line);
-  background: var(--white);
-  color: var(--text);
-  transition: background .15s, border-color .15s, transform .1s;
+padding: 9px 20px;
+border-radius: var(–radius);
+font-size: 13px;
+font-weight: 600;
+cursor: pointer;
+border: 1px solid var(–gray-line);
+background: var(–white);
+color: var(–text);
+transition: background .15s, border-color .15s, transform .1s;
 }
-.btn:hover { background: var(--gray-bg); }
+.btn:hover { background: var(–gray-bg); }
 .btn:active { transform: scale(.98); }
 
-.btn-green  { background: var(--green-dark); color: #fff; border-color: var(--green-dark); }
-.btn-green:hover { background: var(--green-mid); border-color: var(--green-mid); }
+.btn-green  { background: var(–green-dark); color: #fff; border-color: var(–green-dark); }
+.btn-green:hover { background: var(–green-mid); border-color: var(–green-mid); }
 
-.btn-orange { background: var(--orange); color: #fff; border-color: var(--orange); }
-.btn-outline { background: var(--white); color: var(--text); }
+.btn-orange { background: var(–orange); color: #fff; border-color: var(–orange); }
+.btn-outline { background: var(–white); color: var(–text); }
 
 .btn-sm { padding: 6px 12px; font-size: 12px; }
 .btn-danger { background: #fdecea; color: #c0392b; border-color: #f5b7b1; }
@@ -297,97 +298,98 @@ textarea { resize: vertical; }
 
 /* ── Recipe cards ─────────────────────────────────────────── */
 .receta-card {
-  background: var(--white);
-  border: 1px solid var(--gray-line);
-  border-radius: var(--radius-lg);
-  padding: 12px 16px;
-  cursor: pointer;
-  transition: border-color .15s, box-shadow .15s;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  box-shadow: var(--shadow);
+background: var(–white);
+border: 1px solid var(–gray-line);
+border-radius: var(–radius-lg);
+padding: 12px 16px;
+cursor: pointer;
+transition: border-color .15s, box-shadow .15s;
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 12px;
+box-shadow: var(–shadow);
 }
-.receta-card:hover { border-color: var(--green-mid); box-shadow: 0 2px 8px rgba(0,0,0,.1); }
+.receta-card:hover { border-color: var(–green-mid); box-shadow: 0 2px 8px rgba(0,0,0,.1); }
 .receta-card .nombre { font-weight: 600; font-size: 14px; }
-.receta-card .meta   { font-size: 12px; color: var(--gray-text); margin-top: 3px; }
-.receta-card .precio { font-weight: 700; color: var(--green-dark); font-size: 15px; white-space: nowrap; }
+.receta-card .meta   { font-size: 12px; color: var(–gray-text); margin-top: 3px; }
+.receta-card .precio { font-weight: 700; color: var(–green-dark); font-size: 15px; white-space: nowrap; }
 
 /* ── Badges ───────────────────────────────────────────────── */
 .badge {
-  display: inline-block;
-  padding: 2px 9px;
-  border-radius: 99px;
-  font-size: 11px;
-  font-weight: 600;
+display: inline-block;
+padding: 2px 9px;
+border-radius: 99px;
+font-size: 11px;
+font-weight: 600;
 }
-.badge-green  { background: var(--green-light); color: var(--green-dark); }
-.badge-orange { background: var(--orange-light); color: var(--orange); }
-.badge-gray   { background: var(--gray-bg); color: var(--gray-text); }
+.badge-green  { background: var(–green-light); color: var(–green-dark); }
+.badge-orange { background: var(–orange-light); color: var(–orange); }
+.badge-gray   { background: var(–gray-bg); color: var(–gray-text); }
 
 /* ── Detail view ──────────────────────────────────────────── */
 .detail-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 14px;
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+flex-wrap: wrap;
+gap: 10px;
+margin-bottom: 14px;
 }
 .detail-header h2 { font-size: 18px; font-weight: 700; }
-.detail-meta { font-size: 12px; color: var(--gray-text); margin-top: 3px; }
+.detail-meta { font-size: 12px; color: var(–gray-text); margin-top: 3px; }
 
 /* ── Insumos table ────────────────────────────────────────── */
 .insumos-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
+width: 100%;
+border-collapse: collapse;
+font-size: 13px;
 }
 .insumos-table th {
-  background: var(--green-dark);
-  color: #fff;
-  padding: 8px 12px;
-  text-align: left;
-  font-size: 11px;
-  font-weight: 600;
+background: var(–green-dark);
+color: #fff;
+padding: 8px 12px;
+text-align: left;
+font-size: 11px;
+font-weight: 600;
 }
 .insumos-table td {
-  padding: 8px 12px;
-  border-bottom: 1px solid var(--gray-line);
+padding: 8px 12px;
+border-bottom: 1px solid var(–gray-line);
 }
-.insumos-table tr:nth-child(even) td { background: var(--green-light); }
+.insumos-table tr:nth-child(even) td { background: var(–green-light); }
 
 /* ── Empty state ──────────────────────────────────────────── */
 .empty {
-  text-align: center;
-  color: var(--gray-text);
-  font-size: 14px;
-  padding: 40px 20px;
-  font-style: italic;
+text-align: center;
+color: var(–gray-text);
+font-size: 14px;
+padding: 40px 20px;
+font-style: italic;
 }
 
 /* ── Messages ─────────────────────────────────────────────── */
 .msg {
-  padding: 10px 16px;
-  border-radius: var(--radius);
-  font-size: 13px;
-  font-weight: 600;
-  text-align: center;
+padding: 10px 16px;
+border-radius: var(–radius);
+font-size: 13px;
+font-weight: 600;
+text-align: center;
 }
-.msg-ok  { background: var(--green-light); color: var(--green-dark); }
+.msg-ok  { background: var(–green-light); color: var(–green-dark); }
 .msg-err { background: #fdecea; color: #c0392b; }
 
 /* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 640px) {
-  .form-grid { grid-template-columns: repeat(2, 1fr); }
-  .field.span-3, .field.span-4, .field.span-5, .field.span-6 { grid-column: span 2; }
-  .field.span-2 { grid-column: span 2; }
-  .kpi-row { grid-template-columns: repeat(2, 1fr); }
-  .kpi-row .kpi:last-child { grid-column: span 2; }
-  .pv-block { flex-direction: column; align-items: flex-start; }
+.form-grid { grid-template-columns: repeat(2, 1fr); }
+.field.span-3, .field.span-4, .field.span-5, .field.span-6 { grid-column: span 2; }
+.field.span-2 { grid-column: span 2; }
+.kpi-row { grid-template-columns: repeat(2, 1fr); }
+.kpi-row .kpi:last-child { grid-column: span 2; }
+.pv-block { flex-direction: column; align-items: flex-start; }
 }
-  </style>
+</style>
+
 </head>
 <body>
 
@@ -406,139 +408,133 @@ textarea { resize: vertical; }
 
   <main class="content">
 
-    <section id="panel-nueva" class="panel active">
-      <div id="msg-nueva"></div>
-      <div class="card">
-        <p class="sec-title">Datos generales</p>
-        <div class="form-grid">
-          <div class="field span-3">
-            <label for="r-nombre">Nombre de la receta *</label>
-            <input id="r-nombre" type="text" placeholder="Ej: Milanesa a la Napolitana" />
-          </div>
-          <div class="field span-2">
-            <label for="r-cat">Categoría</label>
-            <select id="r-cat">
-              <option value="">— elegir —</option>
-              <option>Entradas</option><option>Platos Principales</option>
-              <option>Pastas</option><option>Pizzas</option>
-              <option>Ensaladas</option><option>Postres</option>
-              <option>Bebidas</option><option>Pescados</option><option>Panificados</option><option>Descartables</option><option>Otros</option>
-            </select>
-          </div>
-          <div class="field span-1">
-            <label for="r-porciones">Porciones</label>
-            <input id="r-porciones" type="number" min="1" value="4" inputmode="numeric" />
-          </div>
-          <div class="field span-1">
-            <label for="r-tprep">Prep (min)</label>
-            <input id="r-tprep" type="number" min="0" placeholder="0" inputmode="numeric" />
-          </div>
-          <div class="field span-1">
-            <label for="r-tcoc">Cocción (min)</label>
-            <input id="r-tcoc" type="number" min="0" placeholder="0" inputmode="numeric" />
-          </div>
-          <div class="field span-5">
-            <label for="r-desc">Descripción / Procedimiento</label>
-            <textarea id="r-desc" rows="3" placeholder="Pasos, técnica, notas..."></textarea>
-          </div>
-        </div>
+```
+<section id="panel-nueva" class="panel active">
+  <div id="msg-nueva"></div>
+  <div class="card">
+    <p class="sec-title">Datos generales</p>
+    <div class="form-grid">
+      <div class="field span-3">
+        <label for="r-nombre">Nombre de la receta *</label>
+        <input id="r-nombre" type="text" placeholder="Ej: Milanesa a la Napolitana" />
       </div>
+      <div class="field span-2">
+        <label for="r-cat">Categoría</label>
+        <select id="r-cat">
+          <option value="">— elegir —</option>
+          <option>Plato principal</option><option>Entradas</option>
+          <option>Preparados</option><option>Guarniciones</option>
+          <option>Empanadas</option><option>Tartas</option>
+          <option>Salsas</option><option>Especiales</option><option>Combos</option>
+        </select>
+      </div>
+      <div class="field span-1">
+        <label for="r-porciones">Porciones</label>
+        <input id="r-porciones" type="number" min="1" value="4" inputmode="numeric" />
+      </div>
+      <div class="field span-5">
+        <label for="r-desc">Descripción / Procedimiento</label>
+        <textarea id="r-desc" rows="3" placeholder="Pasos, técnica, notas..."></textarea>
+      </div>
+    </div>
+  </div>
 
-      <div class="card">
-        <p class="sec-title">Ingredientes</p>
-        <div class="table-wrap">
-          <table class="ing-table">
-            <thead>
-              <tr>
-                <th class="col-num">#</th>
-                <th class="col-insumo">Insumo</th>
-                <th class="col-unidad">Unidad</th>
-                <th class="col-cant">Cantidad</th>
-                <th class="col-cu">Costo unit.</th>
-                <th class="col-sub">Subtotal</th>
-                <th class="col-del"></th>
-              </tr>
-            </thead>
-            <tbody id="ing-body"></tbody>
-          </table>
-        </div>
-        <button class="btn btn-sm btn-outline" id="btn-add-ing">+ Agregar ingrediente</button>
-      </div>
+  <div class="card">
+    <p class="sec-title">Ingredientes</p>
+    <div class="table-wrap">
+      <table class="ing-table">
+        <thead>
+          <tr>
+            <th class="col-num">#</th>
+            <th class="col-insumo">Insumo</th>
+            <th class="col-cant">Cantidad</th>
+            <th class="col-cu">Costo unit.</th>
+            <th class="col-sub">Subtotal</th>
+            <th class="col-del"></th>
+          </tr>
+        </thead>
+        <tbody id="ing-body"></tbody>
+      </table>
+    </div>
+    <button class="btn btn-sm btn-outline" id="btn-add-ing">+ Agregar ingrediente</button>
+  </div>
 
-      <div class="total-bar">
-        <span class="total-label">Costo total de ingredientes</span>
-        <span class="total-val" id="total-costo">$0,00</span>
-      </div>
+  <div class="total-bar">
+    <span class="total-label">Costo total de ingredientes</span>
+    <span class="total-val" id="total-costo">$0,00</span>
+  </div>
 
-      <div class="pv-block">
-        <label for="r-pventa">Precio de venta $</label>
-        <input id="r-pventa" type="number" min="0" placeholder="0,00" inputmode="decimal" />
-      </div>
+  <div class="pv-block">
+    <label for="r-pventa">Precio de venta $</label>
+    <input id="r-pventa" type="number" min="0" placeholder="0,00" inputmode="decimal" />
+  </div>
 
-      <div class="kpi-row">
-        <div class="kpi"><div class="kpi-label">Costo por porción</div><div class="kpi-val" id="kpi-cpp">—</div></div>
-        <div class="kpi"><div class="kpi-label">Ganancia bruta</div><div class="kpi-val" id="kpi-gan">—</div></div>
-        <div class="kpi"><div class="kpi-label">Margen</div><div class="kpi-val" id="kpi-margen">—</div></div>
-      </div>
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-label">Costo por porción</div><div class="kpi-val" id="kpi-cpp">—</div></div>
+    <div class="kpi"><div class="kpi-label">Ganancia bruta</div><div class="kpi-val" id="kpi-gan">—</div></div>
+    <div class="kpi"><div class="kpi-label">Margen</div><div class="kpi-val" id="kpi-margen">—</div></div>
+  </div>
 
-      <div class="action-row">
-        <button class="btn btn-green" id="btn-guardar">Guardar receta</button>
-        <button class="btn btn-outline" id="btn-limpiar">Limpiar formulario</button>
-      </div>
-    </section>
+  <div class="action-row">
+    <button class="btn btn-green" id="btn-guardar">Guardar receta</button>
+    <button class="btn btn-outline" id="btn-limpiar">Limpiar formulario</button>
+  </div>
+</section>
 
-    <section id="panel-recetas" class="panel">
-      <div class="search-box">
-        <input id="busq-receta" type="text" placeholder="Buscar por nombre o categoría..." />
-      </div>
-      <div id="lista-recetas"></div>
-      <div id="detalle-receta" style="display:none"></div>
-    </section>
+<section id="panel-recetas" class="panel">
+  <div class="search-box">
+    <input id="busq-receta" type="text" placeholder="Buscar por nombre o categoría..." />
+  </div>
+  <div id="lista-recetas"></div>
+  <div id="detalle-receta" style="display:none"></div>
+</section>
 
-    <section id="panel-insumos" class="panel">
-      <div class="search-box">
-        <input id="busq-insumo" type="text" placeholder="Buscar insumo..." />
-        <button class="btn btn-green" id="btn-nuevo-insumo">+ Insumo</button>
+<section id="panel-insumos" class="panel">
+  <div class="search-box">
+    <input id="busq-insumo" type="text" placeholder="Buscar insumo..." />
+    <button class="btn btn-green" id="btn-nuevo-insumo">+ Insumo</button>
+  </div>
+  <div id="form-insumo" class="card" style="display:none">
+    <p class="sec-title" id="form-ins-title">Nuevo insumo</p>
+    <div class="form-grid">
+      <div class="field span-3">
+        <label for="ins-nombre">Nombre *</label>
+        <input id="ins-nombre" type="text" placeholder="Ej: Harina 000" />
       </div>
-      <div id="form-insumo" class="card" style="display:none">
-        <p class="sec-title" id="form-ins-title">Nuevo insumo</p>
-        <div class="form-grid">
-          <div class="field span-3">
-            <label for="ins-nombre">Nombre *</label>
-            <input id="ins-nombre" type="text" placeholder="Ej: Harina 000" />
-          </div>
-          <div class="field span-2">
-            <label for="ins-cat">Categoría</label>
-            <select id="ins-cat">
-              <option>Secos</option><option>Lácteos</option><option>Carnes</option>
-              <option>Verduras</option><option>Líquidos</option><option>Especias</option>
-              <option>Envasados</option><option>Varios</option>
-            </select>
-          </div>
-          <div class="field span-1">
-            <label for="ins-unidad">Unidad</label>
-            <select id="ins-unidad">
-              <option>kg</option><option>gr</option><option>lt</option>
-              <option>ml</option><option>unidad</option><option>docena</option>
-              <option>atado</option><option>paquete</option>
-            </select>
-          </div>
-          <div class="field span-2">
-            <label for="ins-costo">Costo ($) *</label>
-            <input id="ins-costo" type="number" min="0" step="0.01" placeholder="0,00" inputmode="decimal" />
-          </div>
-          <div class="field span-3">
-            <label for="ins-proveedor">Proveedor</label>
-            <input id="ins-proveedor" type="text" placeholder="Nombre del proveedor" />
-          </div>
-        </div>
-        <div class="action-row" style="margin-top:12px">
-          <button class="btn btn-green" id="btn-guardar-insumo">Guardar</button>
-          <button class="btn btn-outline" id="btn-cancelar-insumo">Cancelar</button>
-        </div>
+      <div class="field span-2">
+        <label for="ins-cat">Categoría</label>
+        <select id="ins-cat">
+          <option>Verduras</option><option>Pescados</option><option>Mariscos</option>
+          <option>Varios</option><option>Preparados</option><option>Descartables</option>
+          <option>Bebidas</option><option>Secos</option><option>Condimentos</option>
+          <option>Lácteos</option><option>Envasados</option><option>Líquidos</option>
+        </select>
       </div>
-      <div id="lista-insumos"></div>
-    </section>
+      <div class="field span-1">
+        <label for="ins-unidad">Unidad</label>
+        <select id="ins-unidad">
+          <option>kg</option><option>gr</option><option>lt</option>
+          <option>ml</option><option>unidad</option><option>docena</option>
+          <option>atado</option><option>paquete</option>
+        </select>
+      </div>
+      <div class="field span-2">
+        <label for="ins-costo">Costo ($) *</label>
+        <input id="ins-costo" type="number" min="0" step="0.01" placeholder="0,00" inputmode="decimal" />
+      </div>
+      <div class="field span-3">
+        <label for="ins-proveedor">Proveedor</label>
+        <input id="ins-proveedor" type="text" placeholder="Nombre del proveedor" />
+      </div>
+    </div>
+    <div class="action-row" style="margin-top:12px">
+      <button class="btn btn-green" id="btn-guardar-insumo">Guardar</button>
+      <button class="btn btn-outline" id="btn-cancelar-insumo">Cancelar</button>
+    </div>
+  </div>
+  <div id="lista-insumos"></div>
+</section>
+```
 
   </main>
 
@@ -1004,13 +1000,12 @@ const RecetasModule = (() => {
         <p class="sec-title">Ingredientes</p>
         <div class="table-wrap">
           <table class="insumos-table">
-            <thead><tr><th>Insumo</th><th>Unidad</th><th style="text-align:right">Cantidad</th><th style="text-align:right">Costo unit.</th><th style="text-align:right">Subtotal</th></tr></thead>
+            <thead><tr><th>Insumo</th><th style="text-align:right">Cantidad</th><th style="text-align:right">Costo unit.</th><th style="text-align:right">Subtotal</th></tr></thead>
             <tbody>
               ${r.ingredientes.map(i => `
                 <tr>
                   <td><strong>${i.nombre}</strong></td>
-                  <td style="text-align:center">${i.unidad}</td>
-                  <td style="text-align:right">${i.cantidad}</td>
+                  <td style="text-align:right">${i.cantidad} ${i.unidad}</td>
                   <td style="text-align:right;color:var(--gray-text)">${fmt(i.cu)}</td>
                   <td style="text-align:right;font-weight:600">${fmt(i.sub)}</td>
                 </tr>
