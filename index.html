@@ -636,7 +636,7 @@ const InsumosModule = (() => {
   function init() {
     insumos = Storage.getInsumos();
     document.getElementById('btn-nuevo-insumo').addEventListener('click', showForm);
-    document.getElementById('btn-guardar-insumo').addEventListener('click', guardar);
+    document.getElementById('btn-guardar-insumo').addEventListener('click', guardarInsumo);
     document.getElementById('btn-cancelar-insumo').addEventListener('click', hideForm);
     document.getElementById('busq-insumo').addEventListener('input', render);
   }
@@ -661,7 +661,7 @@ const InsumosModule = (() => {
     editId = null;
   }
 
-  function guardar() {
+  function guardarInsumo() {
     const nombre    = document.getElementById('ins-nombre').value.trim();
     const costo     = parseFloat(document.getElementById('ins-costo').value);
     const cat       = document.getElementById('ins-cat').value;
